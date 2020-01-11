@@ -1,1 +1,112 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <script>
 
+            function computerPlay(){
+                var roll = Math.floor(Math.random() * 3)
+                switch (roll) {
+                    case 0:
+                        return "rock";
+                        break;
+                    case 1:
+                        return "paper";
+                        break;
+                    default:
+                        return "scissors";
+                        break;
+                }
+            };
+
+            function playRound(playerSelection,computerSelection){
+                if(playerSelection != "rock" && playerSelection != "scissors" && playerSelection != "paper"){
+                    return "Invalid Input";
+                }
+                switch (computerSelection){
+                    case "rock":
+                        switch (playerSelection){
+                            case "rock":
+                                alert ("It's a Tie!");
+                                break;
+                            case "paper":
+                                alert("You Win! Paper beats Rock");
+                                return 1;
+                                break;
+                            default:
+                                alert("You Lose! Rock beats Scissors");
+                                return 2;
+                                break;
+                            }
+                        break;
+                    case "paper":
+                        switch (playerSelection){
+                            case "paper":
+                                alert("It's a Tie!");
+                                break;
+                            case "scissors":
+                                alert("You Win! Scissors beats Paper");
+                                return 1;
+                                break;
+                            default:
+                                alert("You Lose! Paper beats Rock");
+                                return 2;
+                                break;
+                            }
+                        break;
+                    default:
+                        switch (playerSelection){
+                            case "scissors":
+                                alert("It's a Tie!");
+                                break;
+                            case "rock":
+                                alert("You Win! Rock beats Scissors");
+                                return 1;
+                                break;
+                            default:
+                                alert ("You Lose! Scissors beats Paper");
+                                return 2;
+                                break;
+                            }
+                        break;
+                }
+                return 0;
+            }
+
+            function playerPlay(){
+                return window.prompt("Rock, Paper or Scissors?").toLowerCase();
+            }
+
+            function game(){
+
+                var scorePlayer = 0, scoreComputer = 0;
+
+                for(i = 0 ; i < 4 ; i++){
+
+                    var result = playRound(playerPlay(),computerPlay());
+
+                    if(result == 1){
+                        scorePlayer++
+                    } else if (result == 2){
+                        scoreComputer++;
+                    }
+                }
+
+                if(scorePlayer < scoreComputer){
+                    return "The Winner Is The Computer With " + scoreComputer + " Wins Against " + scorePlayer;
+                }else if (scorePlayer > scoreComputer){
+                    return "You're The Winner With " + scorePlayer + " Wins Against " + scoreComputer; 
+                }else{
+                    return "It's A TIEEEEE!!!!!!!"
+                }
+            }
+
+            console.log(game());
+            //const playerSelection = playerPlay();
+            //const computerSelection = computerPlay();
+            //console.log(playRound(playerSelection,computerSelection));
+            //alert (playRound(playerSelection,computerSelection));
+        </script>
+    </body>
+</html>
